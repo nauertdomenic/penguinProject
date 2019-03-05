@@ -45,7 +45,7 @@ public class Animal implements Serializable {
 
     @Column(length = 50)
     @Size(min = 3, max = 50, message = "Die Tierart muss zwischen 3 und 50 Zeichen lang sein.")
-    private String kind;
+    private String name;
 
     private long avgWeight;
     
@@ -61,10 +61,10 @@ public class Animal implements Serializable {
     public Animal() {
     }
 
-    public Animal(User owner, Species species, String kind, long avgWeihgt, long avgSize, Date dueDate, Time dueTime) {
+    public Animal(User owner, Species species, String name, long avgWeihgt, long avgSize, Date dueDate, Time dueTime) {
         this.owner = owner;
         this.species = species;
-        this.kind = kind;
+        this.name = name;
         this.avgWeight = avgWeihgt;
         this.avgSize = avgSize;
         this.dueDate = dueDate;
@@ -97,12 +97,12 @@ public class Animal implements Serializable {
         this.species = species;
     }
 
-    public String getKind() {
-        return kind;
+    public String getName() {
+        return name;
     }
 
-    public void setKind(String kind) {
-        this.kind = kind;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public long getAvgWeight() {

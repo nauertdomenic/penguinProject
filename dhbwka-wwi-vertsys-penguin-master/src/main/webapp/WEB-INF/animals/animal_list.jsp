@@ -79,7 +79,7 @@
                         <tr>
                             <td>
                                 <a href="<c:url value="/app/animals/animal/${animal.id}/"/>">
-                                    <c:out value="${animals.kind}"/>
+                                    <c:out value="${animals.name}"/>
                                 </a>
                             </td>
                             <td>

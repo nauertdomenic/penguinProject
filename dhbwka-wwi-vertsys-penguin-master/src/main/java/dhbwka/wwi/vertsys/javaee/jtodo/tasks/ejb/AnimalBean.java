@@ -69,7 +69,7 @@ public class AnimalBean extends EntityBean<Animal, Long> {
         Predicate p = cb.conjunction();
         
         if (search != null && !search.trim().isEmpty()) {
-            p = cb.and(p, cb.like(from.get("kind"), "%" + search + "%"));
+            p = cb.and(p, cb.like(from.get("name"), "%" + search + "%"));
             query.where(p);
         }
         

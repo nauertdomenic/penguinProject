@@ -114,7 +114,7 @@ public class AnimalEditServlet extends HttpServlet {
         String animalSpecies = request.getParameter("animal_species");
         String animalDueDate = request.getParameter("animal_due_date");
         String animalDueTime = request.getParameter("animal_due_time");
-        String animalKind = request.getParameter("animal_kind");
+        String animalName = request.getParameter("animal_name");
 
         Animal animal = this.getRequestedAnimal(request);
 
@@ -141,7 +141,7 @@ public class AnimalEditServlet extends HttpServlet {
             errors.add("Die Uhrzeit muss dem Format hh:mm:ss entsprechen.");
         }
 
-        animal.setKind(animalKind);
+        animal.setName(animalName);
 
         this.walliBean.validate(animal, errors);
 
@@ -255,8 +255,8 @@ public class AnimalEditServlet extends HttpServlet {
             WebUtils.formatTime(animal.getDueTime())
         });
 
-        values.put("animal_kind", new String[]{
-            animal.getKind()
+        values.put("animal_name", new String[]{
+            animal.getName()
         });
 
         FormValues formValues = new FormValues();
