@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
  * Formular, mit dem ein neue Spezies angelegt werden kann, sowie eine Liste,
  * die zum Löschen der Spezies verwendet werden kann.
  */
-@WebServlet(urlPatterns = {"/app/tasks/categories/"})
+@WebServlet(urlPatterns = {"/app/tierarten/spezies/"})
 public class CategoryListServlet extends HttpServlet {
 
     @EJB

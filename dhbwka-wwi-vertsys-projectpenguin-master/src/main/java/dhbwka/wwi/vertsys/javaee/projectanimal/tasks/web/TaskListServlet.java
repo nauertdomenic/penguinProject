@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet für die tabellarische Auflisten der Tierarten.
  */
-@WebServlet(urlPatterns = {"/app/tasks/list/"})
+@WebServlet(urlPatterns = {"/app/tierarten/list/"})
 public class TaskListServlet extends HttpServlet {
 
     @EJB

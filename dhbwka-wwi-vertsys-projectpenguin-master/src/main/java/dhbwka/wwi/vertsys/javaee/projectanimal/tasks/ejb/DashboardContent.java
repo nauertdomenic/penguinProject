@@ -89,7 +89,7 @@ public class DashboardContent implements DashboardContentProvider {
      */
     private DashboardTile createTile(Category category, String label, String cssClass, String icon) {
         int amount = taskBean.search(null, category).size();
-        String href = "/app/tasks/list/";
+        String href = "/app/tierarten/list/";
 
         if (category != null) {
             href = WebUtils.addQueryParameter(href, "search_category", "" + category.getId());

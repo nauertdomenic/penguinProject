@@ -19,11 +19,11 @@
         </div>
 
         <div class="menuitem">
-            <a href="<c:url value="/app/tasks/task/new/"/>">Tierart anlegen</a>
+            <a href="<c:url value="/app/tierarten/tierart/new/"/>">Tierart anlegen</a>
         </div>
 
         <div class="menuitem">
-            <a href="<c:url value="/app/tasks/categories/"/>">Spezies bearbeiten</a>
+            <a href="<c:url value="/app/tierarten/spezies/"/>">Spezies bearbeiten</a>
         </div>
     </jsp:attribute>
 
@@ -68,7 +68,7 @@
                     <c:forEach items="${tierarten}" var="tierart">
                         <tr>
                             <td>
-                                <a href="<c:url value="/app/tasks/task/${tierart.id}/"/>">
+                                <a href="<c:url value="/app/tierarten/tierart/${tierart.id}/"/>">
                                     <c:out value="${tierart.tierartname}"/>
                                 </a>
                             </td>

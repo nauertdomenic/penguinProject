@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -18,6 +19,7 @@ import javax.validation.constraints.Size;
  * Spezies, die den Tierarten zugeordnet werden können.
  */
 @Entity
+@Table(name = "Spezies")
 public class Category implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -23,7 +23,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Seite zum Anlegen oder Bearbeiten einer Tierart.
  */
-@WebServlet(urlPatterns = "/app/tasks/task/*")
+@WebServlet(urlPatterns = "/app/tierarten/tierart/*")
 public class TaskEditServlet extends HttpServlet {
 
     @EJB
@@ -123,7 +123,7 @@ public class TaskEditServlet extends HttpServlet {
         // Weiter zur nächsten Seite
         if (errors.isEmpty()) {
             // Keine Fehler: Startseite aufrufen
-            response.sendRedirect(WebUtils.appUrl(request, "/app/tasks/list/"));
+            response.sendRedirect(WebUtils.appUrl(request, "/app/tierarten/list/"));
         } else {
             // Fehler: Formuler erneut anzeigen
             FormValues formValues = new FormValues();
@@ -153,7 +153,7 @@ public class TaskEditServlet extends HttpServlet {
         this.taskBean.delete(tierart);
 
         // Zurück zur Übersicht
-        response.sendRedirect(WebUtils.appUrl(request, "/app/tasks/list/"));
+        response.sendRedirect(WebUtils.appUrl(request, "/app/tierarten/list/"));
     }
 
     /**
