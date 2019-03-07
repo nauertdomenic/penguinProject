@@ -17,13 +17,13 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet für die tabellarische Auflisten der Tierarten.
  */
 @WebServlet(urlPatterns = {"/app/tierarten/list/"})
-public class TaskListServlet extends HttpServlet {
+public class TierartListServlet extends HttpServlet {
 
     @EJB
     private CategoryBean categoryBean;
     
     @EJB
-    private TierartBean taskBean;
+    private TierartBean tierartBean;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -47,7 +47,7 @@ public class TaskListServlet extends HttpServlet {
             }
         }
 
-        List<Tierart> tierarten = this.taskBean.search(searchText, category);
+        List<Tierart> tierarten = this.tierartBean.search(searchText, category);
         request.setAttribute("tierarten", tierarten);
 
         // Anfrage an die JSP weiterleiten

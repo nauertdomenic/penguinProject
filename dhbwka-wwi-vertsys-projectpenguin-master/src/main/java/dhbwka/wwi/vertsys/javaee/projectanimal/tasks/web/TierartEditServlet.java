@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
  * Seite zum Anlegen oder Bearbeiten einer Tierart.
  */
 @WebServlet(urlPatterns = "/app/tierarten/tierart/*")
-public class TaskEditServlet extends HttpServlet {
+public class TierartEditServlet extends HttpServlet {
 
     @EJB
     TierartBean taskBean;

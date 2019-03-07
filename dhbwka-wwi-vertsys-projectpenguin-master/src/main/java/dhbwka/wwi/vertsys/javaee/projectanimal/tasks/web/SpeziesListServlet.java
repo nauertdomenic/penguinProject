@@ -23,7 +23,7 @@ import javax.servlet.http.HttpSession;
  * die zum Löschen der Spezies verwendet werden kann.
  */
 @WebServlet(urlPatterns = {"/app/tierarten/spezies/"})
-public class CategoryListServlet extends HttpServlet {
+public class SpeziesListServlet extends HttpServlet {
 
     @EJB
     CategoryBean categoryBean;
