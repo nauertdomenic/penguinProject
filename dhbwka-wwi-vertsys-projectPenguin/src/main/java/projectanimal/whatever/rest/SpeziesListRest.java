@@ -11,7 +11,7 @@ import projectanimal.whatever.jpa.Spezies;
 
 /**
  *
- * @author simon
+ * @author phoenix
  */
 @Stateless
 @Path("speziesliste")

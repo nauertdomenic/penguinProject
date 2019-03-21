@@ -8,7 +8,7 @@ import projectanimal.whatever.jpa.Spezies;
 
 /**
  *
- * @author simon
+ * @author phoenix
  */
 @Stateless
 @RolesAllowed("app-user")

@@ -14,7 +14,7 @@ import projectanimal.whatever.jpa.TierartStatus;
 
 /**
  *
- * @author simon
+ * @author phoenix
  */
 @WebServlet(urlPatterns = {"/app/tierarten/list/"})
 public class TierartListServlet extends HttpServlet {
@@ -49,7 +49,7 @@ public class TierartListServlet extends HttpServlet {
                 spezies = null;
             }
         }
-        
+
         if (searchStatus != null) {
             try {
                 status = TierartStatus.valueOf(searchStatus);

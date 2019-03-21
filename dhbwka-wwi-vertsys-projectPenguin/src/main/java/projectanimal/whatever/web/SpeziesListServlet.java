@@ -15,7 +15,7 @@ import projectanimal.whatever.jpa.Tierart;
 
 /**
  *
- * @author simon
+ * @author phoenix
  */
 @WebServlet(urlPatterns = {"/app/tierarten/spezies/"})
 public class SpeziesListServlet extends HttpServlet {
@@ -49,7 +49,7 @@ public class SpeziesListServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Angeforderte Aktion ausführen        
+        // Angeforderte Aktion ausführen
         String action = request.getParameter("action");
 
         if (action == null) {

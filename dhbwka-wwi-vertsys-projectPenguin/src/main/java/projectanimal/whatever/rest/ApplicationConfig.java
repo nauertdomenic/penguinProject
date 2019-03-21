@@ -2,7 +2,7 @@ package projectanimal.whatever.rest;
 
 /**
  *
- * @author simon
+ * @author phoenix
  */
 import java.util.*;
 import javax.ws.rs.ApplicationPath;

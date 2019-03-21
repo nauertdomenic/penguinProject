@@ -15,7 +15,7 @@ import projectanimal.whatever.jpa.TierartStatus;
 
 /**
  *
- * @author simon
+ * @author phoenix
  */
 @WebServlet(urlPatterns = "/app/tierarten/tierart/*")
 public class TierartEditServlet extends HttpServlet {
@@ -112,7 +112,7 @@ public class TierartEditServlet extends HttpServlet {
         } catch (IllegalArgumentException ex) {
             errors.add("Der ausgewählte Status ist nicht vorhanden.");
         }
-        
+
         tierart.setTierartname(tierartTierartname);
 
         this.validationBean.validate(tierart, errors);
@@ -216,7 +216,7 @@ public class TierartEditServlet extends HttpServlet {
                 "" + tierart.getSpezies().getId()
             });
         }
-        
+
         values.put("tierart_status", new String[]{
             tierart.getStatus().toString()
         });

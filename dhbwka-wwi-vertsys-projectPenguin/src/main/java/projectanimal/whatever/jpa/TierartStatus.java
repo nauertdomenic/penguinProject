@@ -2,7 +2,7 @@ package projectanimal.whatever.jpa;
 
 /**
  *
- * @author simon
+ * @author phoenix
  */
 public enum TierartStatus {
     AUSGESTORBEN, BEDROHT, ENTDECKT, GESCHÜTZT, IN_FORSCHUNG, MYTHOS;

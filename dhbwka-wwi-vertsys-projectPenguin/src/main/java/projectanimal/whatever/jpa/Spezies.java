@@ -7,7 +7,7 @@ import javax.validation.constraints.*;
 
 /**
  *
- * @author simon
+ * @author phoenix
  */
 @Entity
 @Table(name = "Spezies")

@@ -85,12 +85,12 @@ public class User implements Serializable {
         this.username = id;
     }
 
-    public List<Tierart> getTasks() {
+    public List<Tierart> getTierarten() {
         return tierarten;
     }
 
-    public void setTasks(List<Tierart> tasks) {
-        this.tierarten = tasks;
+    public void setTierarten(List<Tierart> tierarten) {
+        this.tierarten = tierarten;
     }
 
     public String getVorname() {

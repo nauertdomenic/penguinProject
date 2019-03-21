@@ -1,9 +1,9 @@
 package projectanimal.whatever.ejb;
 
 import dhbwka.wwi.vertsys.javaee.projectanimal.common.ejb.EntityBean;
+import java.util.*;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
-import java.util.*;
 import javax.persistence.criteria.*;
 import projectanimal.whatever.jpa.Spezies;
 import projectanimal.whatever.jpa.Tierart;
@@ -11,7 +11,7 @@ import projectanimal.whatever.jpa.TierartStatus;
 
 /**
  *
- * @author simon
+ * @author phoenix
  */
 @Stateless
 @RolesAllowed("app-user")
@@ -34,8 +34,9 @@ public class TierartBean extends EntityBean<Tierart, Long> {
     }
 
     /**
-     * Suche nach Tierarten anhand ihrer Bezeichnung, Spezies.Anders als in der Vorlesung behandelt, wird die SELECT-Anfrage hier mit
- der CriteriaBuilder-API vollkommen dynamisch erzeugt.
+     * Suche nach Tierarten anhand ihrer Bezeichnung, Spezies.Anders als in der
+     * Vorlesung behandelt, wird die SELECT-Anfrage hier mit der
+     * CriteriaBuilder-API vollkommen dynamisch erzeugt.
      *
      *
      * @param search In der Kurzbeschreibung enthaltener Text (optional)
@@ -65,7 +66,7 @@ public class TierartBean extends EntityBean<Tierart, Long> {
             p = cb.and(p, cb.equal(from.get("spezies"), spezies));
             query.where(p);
         }
-        
+
         // WHERE t.status = :status
         if (status != null) {
             p = cb.and(p, cb.equal(from.get("status"), status));

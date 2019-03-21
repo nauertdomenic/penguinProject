@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author simon
+ * @author phoenix
  */
 @Entity
 @Table(name = "Tierart")
@@ -32,7 +32,7 @@ public class Tierart implements Serializable {
     @NotNull(message = "Der Tierartname darf nicht leer sein.")
     @Size(min = 1, max = 50, message = "Der Tierartname muss zwischen ein und 50 Zeichen lang sein.")
     private String tierartname;
-    
+
     @Enumerated(EnumType.STRING)
     @NotNull
     private TierartStatus status = TierartStatus.ENTDECKT;
@@ -80,7 +80,7 @@ public class Tierart implements Serializable {
     public void setTierartname(String tierartname) {
         this.tierartname = tierartname;
     }
-    
+
     public TierartStatus getStatus() {
         return status;
     }
@@ -88,9 +88,6 @@ public class Tierart implements Serializable {
     public void setStatus(TierartStatus status) {
         this.status = status;
     }
-    
+
     //</editor-fold>
-
-    
-
 }

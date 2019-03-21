@@ -12,7 +12,7 @@ import projectanimal.whatever.jpa.Tierart;
 
 /**
  *
- * @author simon
+ * @author phoenix
  */
 @Stateless
 @Path("tierartRest/{name}")
