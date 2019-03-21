@@ -73,7 +73,7 @@
 
                     <%-- Button zum Abschicken --%>
                     <div class="side-by-side">
-                        <button class="icon-pencil" type="submit">
+                        <button class="icon-login" type="submit">
                             Registrieren
                         </button>
                     </div>

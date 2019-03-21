@@ -47,7 +47,7 @@
 
                 <br>
 
-                <button type="submit" name="action" value="create" class="icon-pencil">
+                <button type="submit" name="action" value="create" class="icon-database">
                     Anlegen
                 </button>
             </div>
@@ -80,7 +80,7 @@
                             </c:forEach>
                         </div>
 
-                        <button type="submit" name="action" value="delete" class="icon-trash">
+                        <button type="submit" name="action" value="delete" class="icon-trash-empty">
                             Markierte löschen
                         </button>
                     </div>

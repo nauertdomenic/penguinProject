@@ -78,30 +78,30 @@ public class DashboardContent implements DashboardContentProvider {
             String icon = "";
 
             switch (status) {
-                case AUSGESTORBEN:
-                    icon = "doc-text";
+                case ENTDECKT:
+                    icon = "eye";
                     break;
                 case IN_FORSCHUNG:
-                    icon = "rocket";
+                    icon = "exchange";
                     break;
                 case BEDROHT:
-                    icon = "ok";
-                    break;
-                case ENTDECKT:
-                    icon = "cancel";
+                    icon = "hammer";
                     break;
                 case GESCHÜTZT:
-                    icon = "bell-off-empty";
+                    icon = "shield";
+                    break;
+                case AUSGESTORBEN:
+                    icon = "cancel";
                     break;
                 case MYTHOS:
-                    icon = "";
+                    icon = "star-empty";
                     break;
             }
 
             tile = this.createTile(spezies, status, status.getLabel(), cssClass1, icon);
             section.getTiles().add(tile);
         }
-        
+
         // Erzeugte Dashboard-Rubrik mit den Kacheln zurückliefern
         return section;
     }
@@ -125,7 +125,7 @@ public class DashboardContent implements DashboardContentProvider {
         if (spezies != null) {
             href = WebUtils.addQueryParameter(href, "search_spezies", "" + spezies.getId());
         }
-        
+
         if (status != null) {
             href = WebUtils.addQueryParameter(href, "search_status", status.toString());
         }

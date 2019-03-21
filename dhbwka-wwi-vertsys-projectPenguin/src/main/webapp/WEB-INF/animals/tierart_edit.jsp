@@ -93,12 +93,12 @@
 
                 <%-- Button zum Abschicken --%>
                 <div class="side-by-side">
-                    <button class="icon-pencil" type="submit" name="action" value="save">
+                    <button class="icon-floppy" type="submit" name="action" value="save">
                         Sichern
                     </button>
 
                     <c:if test="${edit}">
-                        <button class="icon-trash" type="submit" name="action" value="delete">
+                        <button class="icon-trash-empty" type="submit" name="action" value="delete">
                             Löschen
                         </button>
                     </c:if>

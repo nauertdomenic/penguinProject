@@ -82,7 +82,7 @@
 
                     <%-- Button zum Abschicken --%>
                     <div class="side-by-side">
-                        <button class="icon-pencil" type="submit">
+                        <button class="icon-floppy" type="submit">
                             Ändern
                         </button>
                     </div>

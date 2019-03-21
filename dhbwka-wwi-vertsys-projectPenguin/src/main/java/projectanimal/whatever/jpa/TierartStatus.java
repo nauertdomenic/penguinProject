@@ -5,7 +5,7 @@ package projectanimal.whatever.jpa;
  * @author phoenix
  */
 public enum TierartStatus {
-    AUSGESTORBEN, BEDROHT, ENTDECKT, GESCHÜTZT, IN_FORSCHUNG, MYTHOS;
+    ENTDECKT, IN_FORSCHUNG, GESCHÜTZT, BEDROHT, AUSGESTORBEN, MYTHOS;
 
     /**
      * Bezeichnung ermitteln
@@ -21,9 +21,9 @@ public enum TierartStatus {
             case ENTDECKT:
                 return "entdeckt";
             case GESCHÜTZT:
-                return "geschützt";
+                return "unter Artenschutz";
             case IN_FORSCHUNG:
-                return "wird Untersucht";
+                return "wird untersucht";
             case MYTHOS:
                 return "Mythos";
             default:
