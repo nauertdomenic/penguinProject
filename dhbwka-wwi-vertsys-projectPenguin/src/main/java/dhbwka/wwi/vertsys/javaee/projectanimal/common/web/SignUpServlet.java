@@ -1,7 +1,7 @@
 package dhbwka.wwi.vertsys.javaee.projectanimal.common.web;
 
-import dhbwka.wwi.vertsys.javaee.projectanimal.common.ejb.ValidationBean;
 import dhbwka.wwi.vertsys.javaee.projectanimal.common.ejb.UserBean;
+import dhbwka.wwi.vertsys.javaee.projectanimal.common.ejb.ValidationBean;
 import dhbwka.wwi.vertsys.javaee.projectanimal.common.jpa.User;
 import java.io.IOException;
 import java.util.List;
@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
+ * @author phoenix
+ *
  * Servlet für die Registrierungsseite. Hier kann sich ein neuer Benutzer
  * registrieren. Anschließend wird der auf die Startseite weitergeleitet.
  */
@@ -44,7 +46,7 @@ public class SignUpServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Formulareingaben auslesen        
+        // Formulareingaben auslesen
         String username = request.getParameter("signup_username");
         String password1 = request.getParameter("signup_password1");
         String password2 = request.getParameter("signup_password2");

@@ -12,6 +12,8 @@ import projectanimal.whatever.jpa.Spezies;
 /**
  *
  * @author phoenix
+ *
+ * Rest für alle Spezies
  */
 @Stateless
 @Path("speziesliste")

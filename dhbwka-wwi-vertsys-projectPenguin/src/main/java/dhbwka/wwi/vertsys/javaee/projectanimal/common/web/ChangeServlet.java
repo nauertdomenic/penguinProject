@@ -17,9 +17,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author phoenix /** Servlet für die Registrierungsseite. Hier kann sich ein
- * neuer Benutzer registrieren. Anschließend wird der auf die Startseite
- * weitergeleitet.
+ * @author phoenix
+ *
+ * Servlet für die Datenverwaltung. Hier kann der Benutzer seine Daten ändern.
  */
 @WebServlet(urlPatterns = {"/app/change/"})
 public class ChangeServlet extends HttpServlet {
@@ -64,7 +64,7 @@ public class ChangeServlet extends HttpServlet {
         this.validationBean.validate(passwort1, errors);
 
         if (passwort1.length() < 6) {
-            errors.add("Das neue Passwort muss zwischen sechs und 64 Zeichen lang sein.");
+            errors.add("Das neue Passwort muss zwischen 6 und 64 Zeichen lang sein.");
         }
 
         if (!passwort1.isEmpty() && !passwort2.isEmpty() && !passwort1.equals(passwort2)) {

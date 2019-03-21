@@ -9,6 +9,8 @@ import javax.validation.constraints.Size;
 /**
  *
  * @author phoenix
+ *
+ * Entity Tierart für die Datenbank
  */
 @Entity
 @Table(name = "Tierart")

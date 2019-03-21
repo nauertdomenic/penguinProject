@@ -12,6 +12,8 @@ import projectanimal.whatever.jpa.TierartStatus;
 /**
  *
  * @author phoenix
+ *
+ * EJB für die Tierart
  */
 @Stateless
 @RolesAllowed("app-user")

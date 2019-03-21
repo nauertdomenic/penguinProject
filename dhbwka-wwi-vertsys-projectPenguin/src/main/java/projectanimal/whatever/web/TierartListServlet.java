@@ -15,6 +15,8 @@ import projectanimal.whatever.jpa.TierartStatus;
 /**
  *
  * @author phoenix
+ *
+ * Servlet fürs Anzeigen aller Tierarten nach Parametern
  */
 @WebServlet(urlPatterns = {"/app/tierarten/list/"})
 public class TierartListServlet extends HttpServlet {

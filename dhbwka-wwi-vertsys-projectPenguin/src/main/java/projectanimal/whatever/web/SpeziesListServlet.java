@@ -16,6 +16,8 @@ import projectanimal.whatever.jpa.Tierart;
 /**
  *
  * @author phoenix
+ *
+ * Servlet für Spezies
  */
 @WebServlet(urlPatterns = {"/app/tierarten/spezies/"})
 public class SpeziesListServlet extends HttpServlet {

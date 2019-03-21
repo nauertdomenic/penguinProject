@@ -9,6 +9,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
+ * @author phoenix
+ *
  * Spezielle EJB zum Anlegen eines Benutzers und Aktualisierung des Passworts.
  */
 @Stateless
@@ -33,6 +35,8 @@ public class UserBean {
      *
      * @param username
      * @param password
+     * @param vorname
+     * @param nachname
      * @throws UserBean.UserAlreadyExistsException
      */
     public void signup(String username, String password, String vorname, String nachname) throws UserAlreadyExistsException {

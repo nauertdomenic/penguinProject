@@ -12,6 +12,8 @@ import projectanimal.whatever.jpa.Tierart;
 /**
  *
  * @author phoenix
+ *
+ * Rest für alle Tierarten
  */
 @Stateless
 @Path("tierartliste")
@@ -23,7 +25,6 @@ public class TierartListRest {
     @GET
     public String doGet() {
         // Anzuzeigende Tierarten suchen
-
         List<Tierart> tierarten = this.tierartBean.findAll();
         Gson gson = new Gson();
         String json = gson.toJson(tierarten);

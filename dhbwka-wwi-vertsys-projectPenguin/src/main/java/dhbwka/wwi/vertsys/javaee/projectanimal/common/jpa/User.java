@@ -12,6 +12,8 @@ import javax.validation.constraints.Size;
 import projectanimal.whatever.jpa.Tierart;
 
 /**
+ * @author phoenix
+ *
  * Datenbankklasse für einen Benutzer.
  */
 @Entity
@@ -21,14 +23,9 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     private static final char[] HEX_ARRAY = "0123456789ABCDEF".toCharArray();
 
-    @Column(name = "USERID")
-    @NotNull
-    @GeneratedValue
-    private long userid;
-
     @Id
     @Column(name = "USERNAME", length = 64)
-    @Size(min = 5, max = 64, message = "Der Benutzername muss zwischen fünf und 64 Zeichen lang sein.")
+    @Size(min = 5, max = 64, message = "Der Benutzername muss zwischen 5 und 64 Zeichen lang sein.")
     @NotNull(message = "Der Benutzername darf nicht leer sein.")
     private String username;
 
@@ -42,7 +39,7 @@ public class User implements Serializable {
 
     public class Password {
 
-        @Size(min = 6, max = 64, message = "Das Passwort muss zwischen sechs und 64 Zeichen lang sein.")
+        @Size(min = 6, max = 64, message = "Das Passwort muss zwischen 6 und 64 Zeichen lang sein.")
         public String password = "";
     }
     @Transient

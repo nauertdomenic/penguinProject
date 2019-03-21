@@ -8,6 +8,8 @@ import javax.validation.constraints.*;
 /**
  *
  * @author phoenix
+ *
+ * Entity Spezies für die Datenbank
  */
 @Entity
 @Table(name = "Spezies")

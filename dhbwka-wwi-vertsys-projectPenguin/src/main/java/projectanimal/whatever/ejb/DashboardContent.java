@@ -11,6 +11,8 @@ import projectanimal.whatever.jpa.Spezies;
 import projectanimal.whatever.jpa.TierartStatus;
 
 /**
+ * @author phoenix
+ *
  * EJB zur Definition der Dashboard-Kacheln für Tierarten.
  */
 @Stateless(name = "tierarten")
@@ -31,7 +33,7 @@ public class DashboardContent implements DashboardContentProvider {
      */
     @Override
     public void createDashboardContent(List<DashboardSection> sections) {
-        // Zunächst einen Abschnitt mit einer Gesamtübersicht aller Aufgaben
+        // Zunächst einen Abschnitt mit einer Gesamtübersicht aller Tierarten
         // in allen Spezies erzeugen
         DashboardSection section = this.createSection(null);
         sections.add(section);
@@ -72,7 +74,7 @@ public class DashboardContent implements DashboardContentProvider {
         DashboardTile tile = this.createTile(spezies, null, "Alle", cssClass + " status-all", "calendar");
         section.getTiles().add(tile);
 
-        // Ja Aufgabenstatus eine weitere Kachel erzeugen
+        // Je Tierstatus eine weitere Kachel erzeugen
         for (TierartStatus status : TierartStatus.values()) {
             String cssClass1 = cssClass + " status-" + status.toString().toLowerCase();
             String icon = "";

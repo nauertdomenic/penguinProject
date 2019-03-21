@@ -3,6 +3,8 @@ package projectanimal.whatever.jpa;
 /**
  *
  * @author phoenix
+ *
+ * ENUM für den Status der Tierart
  */
 public enum TierartStatus {
     ENTDECKT, IN_FORSCHUNG, GESCHÜTZT, BEDROHT, AUSGESTORBEN, MYTHOS;

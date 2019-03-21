@@ -3,6 +3,8 @@ package projectanimal.whatever.rest;
 /**
  *
  * @author phoenix
+ *
+ * Config für Rest-Schnittstelle
  */
 import java.util.*;
 import javax.ws.rs.ApplicationPath;

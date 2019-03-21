@@ -13,6 +13,8 @@ import projectanimal.whatever.jpa.Spezies;
 /**
  *
  * @author phoenix
+ *
+ * Rest für alle Spezies die $name sind
  */
 @Stateless
 @Path("speziesname/{name}")

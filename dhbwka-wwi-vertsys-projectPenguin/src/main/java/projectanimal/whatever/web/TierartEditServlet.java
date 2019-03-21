@@ -16,6 +16,8 @@ import projectanimal.whatever.jpa.TierartStatus;
 /**
  *
  * @author phoenix
+ *
+ * Servlet für anlegen, bearbeiten und löschen von Tierarten
  */
 @WebServlet(urlPatterns = "/app/tierarten/tierart/*")
 public class TierartEditServlet extends HttpServlet {

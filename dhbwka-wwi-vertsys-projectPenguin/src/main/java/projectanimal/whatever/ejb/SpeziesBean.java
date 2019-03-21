@@ -9,6 +9,8 @@ import projectanimal.whatever.jpa.Spezies;
 /**
  *
  * @author phoenix
+ *
+ * EJB für die Spezies
  */
 @Stateless
 @RolesAllowed("app-user")
