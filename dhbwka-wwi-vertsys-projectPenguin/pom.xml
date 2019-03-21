@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>dhbwka.wwi.vertsys.javaee</groupId>
-    <artifactId>projectNopli</artifactId>
+    <artifactId>projectPenguin</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>projectNopli</name>
+    <name>projectPenguin</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
