@@ -4,9 +4,11 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
+<!--JSP zum Bearbeiten, Anlegen und Löschen der Spezies-->
+
 <template:base>
     <jsp:attribute name="title">
-        Kategorien bearbeiten
+        Spezies bearbeiten
     </jsp:attribute>
 
     <jsp:attribute name="head">
@@ -72,7 +74,7 @@
                     <div>
                         <div class="margin">
                             <c:forEach items="${spezien}" var="spezies">
-                                <input type="checkbox" name="spezies" id="${'spezies-'.concat(spezies.id)}" value="${spezies.id}" />
+                                <input type="checkbox" name="spezies" id="${'spezies-'.concat(spezies.id)}" value="${spezies.id}" placeholder="Speziesname" />
                                 <label for="${'spezies-'.concat(spezies.id)}">
                                     <c:out value="${spezies.name}"/>
                                 </label>
@@ -80,6 +82,7 @@
                             </c:forEach>
                         </div>
 
+                        <%--Löschen der markierten Spezies--%>
                         <button type="submit" name="action" value="delete" class="icon-trash-empty">
                             Markierte löschen
                         </button>

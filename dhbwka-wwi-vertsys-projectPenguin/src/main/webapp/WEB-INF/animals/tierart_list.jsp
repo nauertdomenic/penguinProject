@@ -4,6 +4,8 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
+<%-- JSP zum Anzeigen der Tierarten und Suchen von Tierarten nach verschiedenen Parametern --%>
+
 <template:base>
     <jsp:attribute name="title">
         Liste der Tierarten

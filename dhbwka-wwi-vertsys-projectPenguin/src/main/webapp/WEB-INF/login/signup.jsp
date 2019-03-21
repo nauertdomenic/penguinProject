@@ -6,6 +6,8 @@
 
 <c:set var="base_url" value="<%=request.getContextPath()%>" />
 
+<%-- JSP zum Registrieren von neuen Usern --%>
+
 <template:base>
     <jsp:attribute name="title">
         Registrierung
