@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+		var url = "https://localhost:8443/projectAnimal/RestAPI/"
+		var urlName = "tierartRest/";
+		var urlAlle = "tierartliste/";
+		var items = [];
+		var urlParameter = "";
+
+		$(document).ready(function() {
+			$("#btnSuchen").click(function() {
+				//Service Link
+				var inputParameter = $('#inputName').val();
+
+				if (inputParameter != "") {
+					urlParameter = url + urlName + inputParameter;
+				} else {
+					urlParameter = url + urlAlle;
+				}
+
+				$.getJSON(urlParameter, function(data) {
+					count = 1;
+					$.each(data, function(key, val) {
+						items.push("<h3>" + count + ". Tierart:</h3>")
+						items.push("<li>Tierartname: " + val.tierartname + "</li>");
+						if(val.spezies != void(0) || typeof val.spezies !== 'undefined'){
+							items.push("<li>Spezies: " + val.spezies.name + "</li>");
+						} else{
+							items.push("<li>Spezies: *leer*</li>");
+						}
+
+						items.push("<li>Status: " + val.status + "</li>");
+						items.push("<li>Username: " + val.owner.username + "</li>");
+						items.push("<li>Name: " + val.owner.vorname + " " + val.owner.nachname + "</li>");
+						items.push("<br />");
+
+						count = count + 1;
+					});
+
+					if(items.length < 1){
+						items.push("<h3>Keine Tierart gefunden!</h3>");
+					}
+
+					$("#platzhalter").empty();
+
+					$("<ul/>", {
+						"class": "my-new-list",
+						html: items.join("")
+					}).appendTo("#platzhalter");
+					items = [];
+				});
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<div>
+		<button id="btnSuchen">Lade Tierarten</button>
+	</div>
+	<br />
+	<div>
+		<input id="inputName" type="text" placeholder="Suchen mit Name" />
+	</div>
+	<div id="platzhalter">
+
+	</div>
+</body>

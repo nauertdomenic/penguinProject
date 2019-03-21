@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+		var url = "https://localhost:8443/projectAnimal/RestAPI/"
+		var urlName = "speziesname/";
+		var urlAlle = "speziesliste/";
+		var items = [];
+		var urlParameter = "";
+
+		//findet alle
+			$(document).ready(function() {
+				$("#btnSuchen").click(function() {
+
+					//Service Link
+					var inputParameter = $('#inputName').val();
+
+					if (inputParameter != "") {
+						urlParameter = url + urlName + inputParameter;
+					} else {
+						urlParameter = url + urlAlle;
+					}
+
+					var serviceUrl = url + urlAlle;
+					$.getJSON(urlParameter, function(data) {
+						var count = 1;
+
+						$.each(data, function(key, val) {
+							items.push("<h3>" + count + ". Spezies</h3>");
+							items.push("<li>SpeziesID: " + val.id + "</li>");
+							items.push("<li>Speziesname: " + val.name + "</li>");
+
+							count = count + 1;
+						});
+
+						if(items.length < 1){
+							items.push("<h3>Keine Spezies gefunden!</h3>");
+						}
+
+		$("#platzhalter").empty();
+
+						$("<ul/>", {
+							"class": "my-new-list",
+							html: items.join("")
+						}).appendTo("#platzhalter");
+						items = [];
+					});
+				});
+			});
+	</script>
+</head>
+
+<body>
+	<div>
+		<button id="btnSuchen">Lade Spezies</button>
+	</div>
+	<br />
+	<div>
+		<input id="inputName" type="text" placeholder="Suchen mit Name" />
+	</div>
+	<div id="platzhalter">
+
+	</div>
+</body>
