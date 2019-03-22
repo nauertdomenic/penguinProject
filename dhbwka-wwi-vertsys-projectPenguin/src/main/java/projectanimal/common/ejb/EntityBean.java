@@ -80,6 +80,17 @@ public abstract class EntityBean<Entity, EntityId> {
     }
 
     /**
+     * Auslesen des Users mit Attribut username
+     *
+     * @param username
+     * @return User
+     */
+    public List<Entity> findUser(String username) {
+        String select = "SELECT e FROM $E e WHERE e.username = :username".replace("$E", this.entityClass.getName());
+        return em.createQuery(select).setParameter("username", username).getResultList();
+    }
+
+    /**
      * Speichern eines neuen Datensatzes.
      *
      * @param entity Zu speichernder Datensatz

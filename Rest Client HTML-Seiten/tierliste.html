@@ -9,6 +9,7 @@
 		var urlAlle = "tierartliste/";
 		var items = [];
 		var urlParameter = "";
+		var urlLogin = "loginRest/";
 
 		$(document).ready(function() {
 			$("#btnSuchen").click(function() {
@@ -54,16 +55,93 @@
 				});
 			});
 		});
+
+		//loginRest
+					$(document).ready(function() {
+						$("#btnLogin").click(function() {
+							var myButtonUser = document.getElementById('btnLogin');
+							var myBtnSuchen = document.getElementById('btnSuchen');
+							var myInputField = document.getElementById('inputName');
+							var myUsernameField = document.getElementById('username');
+							var myPaswordField = document.getElementById('passwort');
+
+							if(myButtonUser.firstChild.data == 'Logout'){
+								myButtonUser.firstChild.data = 'Login';
+								myPaswordField.disabled = false;
+								myUsernameField.disabled = false;
+								myUsernameField.value = "";
+								myBtnSuchen.hidden = true;
+								myInputField.hidden = true;
+								return;
+							}
+
+							var username = $('#username').val();
+							var passwort = $('#passwort').val();
+
+							if(!username || !passwort){
+										items.push("<h3>Bitte einloggen!</h3>");
+										$("#platzhalter").empty();
+
+										$("<ul/>", {
+											"class": "my-new-list",
+											html: items.join("")
+										}).appendTo("#platzhalter");
+
+										items = [];
+										return;
+							}
+
+							var urlParameter = url + urlLogin + username + "/" + passwort;
+
+
+							$.getJSON(urlParameter, function(data) {
+
+								if(data == 0){
+									items.push("<h3>Kein User in der Datenbank vorhanden!</h3>");
+								} else if (data == 1) {
+									myPaswordField.disabled = true;
+									myUsernameField.disabled = true;
+									myPaswordField.value = "";
+
+									myBtnSuchen.hidden = false;
+									myInputField.hidden = false;
+
+									myButtonUser.firstChild.data = 'Logout';
+
+								} else if (data == 2) {
+									items.push("<h3>Passwort falsch!</h3>");
+								}
+
+								$("#platzhalter").empty();
+
+								$("<ul/>", {
+									"class": "my-new-list",
+									html: items.join("")
+								}).appendTo("#platzhalter");
+
+								items = [];
+
+							});
+						});
+					});
 	</script>
 </head>
 
 <body>
 	<div>
-		<button id="btnSuchen">Lade Tierarten</button>
+		<input id="username" type="text" placeholder="Username" />
+		<input id="passwort" type="password" placeholder="Passwort" />
+		<button id="btnLogin">Login</button>
+	</div>
+
+	<br />
+
+	<div>
+		<button id="btnSuchen" hidden>Lade Tierarten</button>
 	</div>
 	<br />
 	<div>
-		<input id="inputName" type="text" placeholder="Suchen mit Name" />
+		<input id="inputName" hidden type="text" placeholder="Suchen mit Name" />
 	</div>
 	<div id="platzhalter">
 
