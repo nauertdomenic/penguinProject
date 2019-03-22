@@ -45,7 +45,7 @@
                 </p>
             </c:when>
             <c:otherwise>
-                <jsp:useBean id="utils" class="dhbwka.wwi.vertsys.javaee.projectanimal.common.web.WebUtils"/>
+                <jsp:useBean id="utils" class="projectanimal.common.web.WebUtils"/>
 
                 <c:forEach items="${sections}" var="section">
                     <h2>
