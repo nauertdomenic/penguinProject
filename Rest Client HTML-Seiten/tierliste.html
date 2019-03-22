@@ -45,85 +45,77 @@
 						items.push("<h3>Keine Tierart gefunden!</h3>");
 					}
 
-					$("#platzhalter").empty();
-
-					$("<ul/>", {
-						"class": "my-new-list",
-						html: items.join("")
-					}).appendTo("#platzhalter");
-					items = [];
+					printHTML();
 				});
 			});
 		});
 
 		//loginRest
-					$(document).ready(function() {
-						$("#btnLogin").click(function() {
-							var myButtonUser = document.getElementById('btnLogin');
-							var myBtnSuchen = document.getElementById('btnSuchen');
-							var myInputField = document.getElementById('inputName');
-							var myUsernameField = document.getElementById('username');
-							var myPaswordField = document.getElementById('passwort');
+		$(document).ready(function() {
+			$("#btnLogin").click(function() {
+				var myButtonUser = document.getElementById('btnLogin');
+				var myBtnSuchen = document.getElementById('btnSuchen');
+				var myInputField = document.getElementById('inputName');
+				var myUsernameField = document.getElementById('username');
+				var myPaswordField = document.getElementById('passwort');
 
-							if(myButtonUser.firstChild.data == 'Logout'){
-								myButtonUser.firstChild.data = 'Login';
-								myPaswordField.disabled = false;
-								myUsernameField.disabled = false;
-								myUsernameField.value = "";
-								myBtnSuchen.hidden = true;
-								myInputField.hidden = true;
-								return;
-							}
+				if(myButtonUser.firstChild.data == 'Logout'){
+					myButtonUser.firstChild.data = 'Login';
+					myPaswordField.disabled = false;
+					myUsernameField.disabled = false;
+					myUsernameField.value = "";
+					myBtnSuchen.hidden = true;
+					myInputField.hidden = true;
+					$("#platzhalter").empty();
+					return;
+				}
 
-							var username = $('#username').val();
-							var passwort = $('#passwort').val();
+				var username = $('#username').val();
+				var passwort = $('#passwort').val();
 
-							if(!username || !passwort){
-										items.push("<h3>Bitte einloggen!</h3>");
-										$("#platzhalter").empty();
+				if(!username || !passwort){
+					items.push("<h3>Bitte einloggen!</h3>");
 
-										$("<ul/>", {
-											"class": "my-new-list",
-											html: items.join("")
-										}).appendTo("#platzhalter");
+					printHTML();
 
-										items = [];
-										return;
-							}
+					return;
+				}
 
-							var urlParameter = url + urlLogin + username + "/" + passwort;
+				var urlParameter = url + urlLogin + username + "/" + passwort;
 
+				$.getJSON(urlParameter, function(data) {
 
-							$.getJSON(urlParameter, function(data) {
+					if(data == 0){
+						items.push("<h3>Kein User in der Datenbank vorhanden!</h3>");
+					} else if (data == 1) {
+						myPaswordField.disabled = true;
+						myUsernameField.disabled = true;
+						myPaswordField.value = "";
 
-								if(data == 0){
-									items.push("<h3>Kein User in der Datenbank vorhanden!</h3>");
-								} else if (data == 1) {
-									myPaswordField.disabled = true;
-									myUsernameField.disabled = true;
-									myPaswordField.value = "";
+						myBtnSuchen.hidden = false;
+						myInputField.hidden = false;
 
-									myBtnSuchen.hidden = false;
-									myInputField.hidden = false;
+						myButtonUser.firstChild.data = 'Logout';
 
-									myButtonUser.firstChild.data = 'Logout';
+					} else if (data == 2) {
+						items.push("<h3>Passwort falsch!</h3>");
+					}
 
-								} else if (data == 2) {
-									items.push("<h3>Passwort falsch!</h3>");
-								}
+					printHTML();
+				});
+			});
+		});
 
-								$("#platzhalter").empty();
+		function printHTML(){
+			$("#platzhalter").empty();
 
-								$("<ul/>", {
-									"class": "my-new-list",
-									html: items.join("")
-								}).appendTo("#platzhalter");
+			$("<ul/>", {
+				"class": "my-new-list",
+				html: items.join("")
+			}).appendTo("#platzhalter");
 
-								items = [];
-
-							});
-						});
-					});
+			items = [];
+		}
 	</script>
 </head>
 
