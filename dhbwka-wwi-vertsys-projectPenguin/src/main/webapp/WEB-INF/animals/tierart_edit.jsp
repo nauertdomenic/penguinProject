@@ -103,6 +103,22 @@
                 <div class="side-by-side">
                     <input type="text" name="tierart_gewicht" value="${tierart_form.values["tierart_gewicht"][0]}">
                 </div>
+                        
+                <label for="tierart_schmeckt">
+                    Schmeckt:
+                </label>   
+                <c:choose>
+                    <c:when test='${tierart_form.values["tierart_schmeckt"][0]}'>
+                        <div class="side-by-side margin">
+                            <input type="checkbox" name="tierart_schmeckt" checked value="true">
+                        </div>
+                    </c:when>    
+                    <c:otherwise>
+                        <div class="side-by-side margin">
+                            <input type="checkbox" name="tierart_schmeckt" value="true">
+                        </div>
+                    </c:otherwise>
+                </c:choose>
 
                 <br>
 

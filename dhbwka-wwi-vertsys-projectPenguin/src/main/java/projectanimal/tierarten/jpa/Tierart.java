@@ -53,6 +53,9 @@ public class Tierart implements Serializable {
     @Max(value = 100000, message = "Höchstgewicht ist bei 100000 kg.")
     private double gewicht;
 
+    @Column(name = "SCHMECKT")
+    private boolean schmeckt;
+
     @Column(name = "CHANGE_DATE")
     @NotNull
     private Date date;
@@ -65,7 +68,7 @@ public class Tierart implements Serializable {
     public Tierart() {
     }
 
-    public Tierart(User owner, Spezies spezies, String tierartname, double lebensdauer, double gewicht, Date date, Time time) {
+    public Tierart(User owner, Spezies spezies, String tierartname, double lebensdauer, double gewicht, Date date, Time time, boolean schmeckt) {
         this.owner = owner;
         this.spezies = spezies;
         this.tierartname = tierartname;
@@ -73,6 +76,7 @@ public class Tierart implements Serializable {
         this.lebensdauer = lebensdauer;
         this.date = date;
         this.time = time;
+        this.schmeckt = schmeckt;
     }
     //</editor-fold>
 
@@ -147,6 +151,18 @@ public class Tierart implements Serializable {
 
     public void setTime(Time time) {
         this.time = time;
+    }
+
+    public boolean getSchmeckt() {
+        return schmeckt;
+    }
+
+    public void setSchmeckt(boolean schmeckt) {
+        this.schmeckt = schmeckt;
+    }
+
+    public String getSchmecktString() {
+        return "" + this.schmeckt;
     }
 
     //</editor-fold>

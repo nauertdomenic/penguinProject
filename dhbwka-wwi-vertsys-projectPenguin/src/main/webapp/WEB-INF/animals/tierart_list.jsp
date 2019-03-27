@@ -85,6 +85,7 @@
                             <th>Status</th>
                             <th>Lebensdauer</th>
                             <th>Gewicht</th>
+                            <th>Schmeckt</th>
                             <th>Eigentümer</th>
                             <th>Änderungsdatum</th>
                             <th>Änderungszeit</th>
@@ -108,6 +109,9 @@
                             </td>
                             <td>
                                 <c:out value="${tierart.gewicht}"/>
+                            </td>
+                            <td>
+                                <c:out value="${tierart.schmeckt}"/>
                             </td>
                             <td>
                                 <c:out value="${tierart.owner.username}"/>

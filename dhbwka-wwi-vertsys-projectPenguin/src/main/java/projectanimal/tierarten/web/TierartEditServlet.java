@@ -107,6 +107,7 @@ public class TierartEditServlet extends HttpServlet {
         String tierartStatus = request.getParameter("tierart_status");
         String tierartGewicht = request.getParameter("tierart_gewicht");
         String tierartLebensdauer = request.getParameter("tierart_lebensdauer");
+        String tierartSchmeckt = request.getParameter("tierart_schmeckt");
 
         // Error handling
         Tierart tierart = this.getRequestedTierart(request);
@@ -140,6 +141,8 @@ public class TierartEditServlet extends HttpServlet {
                 errors.add("Bitte gebe eine Zahl für die Lebensdauer ein.");
             }
         }
+
+        tierart.setSchmeckt(Boolean.valueOf(tierartSchmeckt));
 
         tierart.setDate(new Date(System.currentTimeMillis()));
         tierart.setTime(new Time(System.currentTimeMillis()));
@@ -272,6 +275,13 @@ public class TierartEditServlet extends HttpServlet {
 
         values.put("tierart_time", new String[]{
             WebUtils.formatTime(tierart.getTime())
+        });
+
+        System.out.println("TESTTESTTEAKSDKLFSLKF");
+        System.out.println(tierart.getSchmecktString());
+
+        values.put("tierart_schmeckt", new String[]{
+            tierart.getSchmecktString()
         });
 
         FormValues formValues = new FormValues();
