@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import projectanimal.common.jpa.User;
@@ -42,9 +44,13 @@ public class Tierart implements Serializable {
     private TierartStatus status = TierartStatus.ENTDECKT;
 
     @Column(name = "LEBENSDAUER")
+    @Min(value = 0, message = "Mindestlebensdauer ist 0 (steht für nicht bekannt).")
+    @Max(value = 1000, message = "Höchstlebensdauer ist bei 1000 Jahren.")
     private double lebensdauer;
 
     @Column(name = "GEWICHT")
+    @Min(value = 0, message = "Mindestgewicht ist 0 (steht für nicht bekannt).")
+    @Max(value = 100000, message = "Höchstgewicht ist bei 100000 kg.")
     private double gewicht;
 
     @Column(name = "CHANGE_DATE")
