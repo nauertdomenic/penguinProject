@@ -1,17 +1,22 @@
 package projectanimal.tierarten.web;
 
-import projectanimal.common.ejb.ValidationBean;
-import projectanimal.common.ejb.UserBean;
-import projectanimal.tierarten.ejb.TierartBean;
-import projectanimal.tierarten.ejb.SpeziesBean;
-import projectanimal.common.web.FormValues;
-import projectanimal.common.web.WebUtils;
 import java.io.IOException;
-import java.util.*;
+import java.sql.Date;
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.ejb.EJB;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+import projectanimal.common.ejb.UserBean;
+import projectanimal.common.ejb.ValidationBean;
+import projectanimal.common.web.FormValues;
+import projectanimal.common.web.WebUtils;
+import projectanimal.tierarten.ejb.SpeziesBean;
+import projectanimal.tierarten.ejb.TierartBean;
 import projectanimal.tierarten.jpa.Tierart;
 import projectanimal.tierarten.jpa.TierartStatus;
 
@@ -100,7 +105,10 @@ public class TierartEditServlet extends HttpServlet {
         String tierartSpezies = request.getParameter("tierart_spezies");
         String tierartTierartname = request.getParameter("tierart_tierartname");
         String tierartStatus = request.getParameter("tierart_status");
+        String tierartGewicht = request.getParameter("tierart_gewicht");
+        String tierartLebensdauer = request.getParameter("tierart_lebensdauer");
 
+        // Error handling
         Tierart tierart = this.getRequestedTierart(request);
 
         if (tierartSpezies != null && !tierartSpezies.trim().isEmpty()) {
@@ -116,6 +124,25 @@ public class TierartEditServlet extends HttpServlet {
         } catch (IllegalArgumentException ex) {
             errors.add("Der ausgewählte Status ist nicht vorhanden.");
         }
+
+        if (!tierartGewicht.isBlank()) {
+            try {
+                tierart.setGewicht(Double.valueOf(tierartGewicht));
+            } catch (NumberFormatException nfe) {
+                errors.add("Bitte gebe eine Zahl für das Gewicht ein.");
+            }
+        }
+
+        if (!tierartLebensdauer.isBlank()) {
+            try {
+                tierart.setLebensdauer(Double.valueOf(tierartLebensdauer));
+            } catch (NumberFormatException nfe) {
+                errors.add("Bitte gebe eine Zahl für die Lebensdauer ein.");
+            }
+        }
+
+        tierart.setDate(new Date(System.currentTimeMillis()));
+        tierart.setTime(new Time(System.currentTimeMillis()));
 
         tierart.setTierartname(tierartTierartname);
 
@@ -174,6 +201,8 @@ public class TierartEditServlet extends HttpServlet {
         // Zunächst davon ausgehen, dass ein neuer Satz angelegt werden soll
         Tierart tierart = new Tierart();
         tierart.setOwner(this.userBean.getCurrentUser());
+        tierart.setDate(new Date(System.currentTimeMillis()));
+        tierart.setTime(new Time(System.currentTimeMillis()));
 
         // ID aus der URL herausschneiden
         String tierartId = request.getPathInfo();
@@ -227,6 +256,22 @@ public class TierartEditServlet extends HttpServlet {
 
         values.put("tierart_tierartname", new String[]{
             tierart.getTierartname()
+        });
+
+        values.put("tierart_gewicht", new String[]{
+            String.valueOf(tierart.getGewicht())
+        });
+
+        values.put("tierart_lebensdauer", new String[]{
+            String.valueOf(tierart.getLebensdauer())
+        });
+
+        values.put("tierart_date", new String[]{
+            WebUtils.formatDate(tierart.getDate())
+        });
+
+        values.put("tierart_time", new String[]{
+            WebUtils.formatTime(tierart.getTime())
         });
 
         FormValues formValues = new FormValues();

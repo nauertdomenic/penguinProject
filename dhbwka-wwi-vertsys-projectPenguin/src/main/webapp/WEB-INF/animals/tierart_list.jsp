@@ -83,7 +83,11 @@
                             <th>Bezeichnung</th>
                             <th>Spezies</th>
                             <th>Status</th>
+                            <th>Lebensdauer</th>
+                            <th>Gewicht</th>
                             <th>Eigentümer</th>
+                            <th>Änderungsdatum</th>
+                            <th>Änderungszeit</th>
                         </tr>
                     </thead>
                     <c:forEach items="${tierarten}" var="tierart">
@@ -100,7 +104,19 @@
                                 <c:out value="${tierart.status.label}"/>
                             </td>
                             <td>
+                                <c:out value="${tierart.lebensdauer}"/>
+                            </td>
+                            <td>
+                                <c:out value="${tierart.gewicht}"/>
+                            </td>
+                            <td>
                                 <c:out value="${tierart.owner.username}"/>
+                            </td>
+                            <td>
+                                <c:out value="${tierart.date}"/>
+                            </td>
+                            <td>
+                                <c:out value="${tierart.time}"/>
                             </td>
                         </tr>
                     </c:forEach>

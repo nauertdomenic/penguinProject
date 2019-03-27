@@ -89,6 +89,20 @@
                         </c:forEach>
                     </select>
                 </div>
+                
+                <label for="tierart_lebensdauer">
+                    Lebensdauer:
+                </label>
+                <div class="side-by-side">
+                    <input type="text" name="tierart_lebensdauer" value="${tierart_form.values["tierart_lebensdauer"][0]}">
+                </div>
+                
+                <label for="tierart_gewicht">
+                    Gewicht:
+                </label>
+                <div class="side-by-side">
+                    <input type="text" name="tierart_gewicht" value="${tierart_form.values["tierart_gewicht"][0]}">
+                </div>
 
                 <br>
 

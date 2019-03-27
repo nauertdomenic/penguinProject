@@ -1,10 +1,12 @@
 package projectanimal.tierarten.jpa;
 
-import projectanimal.common.jpa.User;
 import java.io.Serializable;
+import java.sql.Date;
+import java.sql.Time;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import projectanimal.common.jpa.User;
 
 /**
  *
@@ -39,14 +41,32 @@ public class Tierart implements Serializable {
     @NotNull
     private TierartStatus status = TierartStatus.ENTDECKT;
 
+    @Column(name = "LEBENSDAUER")
+    private double lebensdauer;
+
+    @Column(name = "GEWICHT")
+    private double gewicht;
+
+    @Column(name = "CHANGE_DATE")
+    @NotNull
+    private Date date;
+
+    @Column(name = "CHANGE_TIME")
+    @NotNull
+    private Time time;
+
     //<editor-fold defaultstate="collapsed" desc="Konstruktoren">
     public Tierart() {
     }
 
-    public Tierart(User owner, Spezies spezies, String tierartname) {
+    public Tierart(User owner, Spezies spezies, String tierartname, double lebensdauer, double gewicht, Date date, Time time) {
         this.owner = owner;
         this.spezies = spezies;
         this.tierartname = tierartname;
+        this.gewicht = gewicht;
+        this.lebensdauer = lebensdauer;
+        this.date = date;
+        this.time = time;
     }
     //</editor-fold>
 
@@ -89,6 +109,38 @@ public class Tierart implements Serializable {
 
     public void setStatus(TierartStatus status) {
         this.status = status;
+    }
+
+    public double getLebensdauer() {
+        return lebensdauer;
+    }
+
+    public void setLebensdauer(double lebensdauer) {
+        this.lebensdauer = lebensdauer;
+    }
+
+    public double getGewicht() {
+        return gewicht;
+    }
+
+    public void setGewicht(double gewicht) {
+        this.gewicht = gewicht;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Time getTime() {
+        return time;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
     }
 
     //</editor-fold>
