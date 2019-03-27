@@ -46,7 +46,7 @@ body {
 }
 
 header {
-    background: white;
+    background: rgba(189,216,235,0.4);
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     margin-bottom: 1rem;
     position: sticky;
@@ -58,7 +58,7 @@ header, main {
 
 /* Titelzeile */
 #titlebar {
-    color: rgb(145, 204, 229);
+    color: rgb(114, 93, 113);
     font-size: 260%;
     margin-bottom: 1rem;
 }
@@ -74,9 +74,11 @@ header, main {
 }
 
 #titlebar .appname {
-    color: rgb(83, 149, 176);
+    color: rgb(148, 154, 182);
 }
-
+#tierart_owner {
+    border-radius: 15px 50px 30px 5px;
+}
 /* Menüzeile */
 #menubar .menuitem {
     display: inline-block;
@@ -86,8 +88,9 @@ header, main {
 
 /* Farben für Links */
 a, a:visited {
-    color: rgb(193, 33, 33);
+    color: rgb(192, 124, 117);
     text-decoration: none;
+    font-weight: bold;
 }
 
 a:hover {

@@ -30,18 +30,18 @@
                         Benutzername:
                         <span class="required">*</span>
                     </label>
-                    <input type="text" name="j_username">
+                    <input type="text" id="j_username" name="j_username">
 
                     <label for="j_password">
                         Passwort:
                         <span class="required">*</span>
                     </label>
-                    <input type="password" name="j_password">
+                    <input type="password" id="j_password" name="j_password">
 
                     <br>
 
                     <%-- Button zum Abschicken --%>
-                    <button class="icon-login" type="submit">
+                    <button class="icon-login"  id="login_button" type="submit">
                         Einloggen
                     </button>
                 </div>

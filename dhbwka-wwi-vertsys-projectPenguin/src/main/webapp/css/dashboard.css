@@ -11,7 +11,7 @@ Creative Commons Namensnennung 4.0 International Lizenz.
 /* Allgemeines Layout */
 .tile {
     position: relative;
-
+    
     border: 1px solid lightgrey;
     box-shadow: 1px 1px 1px rgba(0,0,0, 0.2);
 
@@ -20,7 +20,7 @@ Creative Commons Namensnennung 4.0 International Lizenz.
     width: 9em;
     height: 9em;
     margin: 0.5em;
-
+    
     font-size: 110%;
 }
 
@@ -34,7 +34,7 @@ Creative Commons Namensnennung 4.0 International Lizenz.
     background-color: white;
     transition: background-color 0.25s;
 
-    color: #606060;
+    color: #1e3cd2;
     z-index: 1;
 }
 
@@ -43,7 +43,7 @@ Creative Commons Namensnennung 4.0 International Lizenz.
 }
 
 .tile a {
-    color: #606060 !important;
+    color: #180da7 !important;
     text-decoration: none !important;
 }
 
