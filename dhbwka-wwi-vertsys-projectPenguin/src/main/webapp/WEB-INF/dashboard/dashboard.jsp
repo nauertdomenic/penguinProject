@@ -59,7 +59,8 @@
                                     <div class="label">
                                         <c:out value="${tile.label}"/>
                                     </div>
-                                    <div class="icon icon-${tile.icon}"></div>
+                                    <img id="bilderDarstellung" src="../../img/${tile.icon}" width="80" height="80">
+                                    
                                     <div class="amount">
                                         <c:choose>
                                             <c:when test="${tile.showDecimals}">

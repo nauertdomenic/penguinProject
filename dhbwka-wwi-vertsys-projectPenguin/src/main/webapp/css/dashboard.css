@@ -92,3 +92,9 @@ Creative Commons Namensnennung 4.0 International Lizenz.
 .tile.status-all .content:hover {
     background-color: #e6e6e6;
 }
+
+#bilderDarstellung{
+    margin-top: 80px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}

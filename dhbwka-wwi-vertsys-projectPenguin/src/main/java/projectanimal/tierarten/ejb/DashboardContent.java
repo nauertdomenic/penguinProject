@@ -1,12 +1,12 @@
 package projectanimal.tierarten.ejb;
 
+import java.util.List;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import projectanimal.common.web.WebUtils;
 import projectanimal.dashboard.ejb.DashboardContentProvider;
 import projectanimal.dashboard.ejb.DashboardSection;
 import projectanimal.dashboard.ejb.DashboardTile;
-import java.util.List;
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
 import projectanimal.tierarten.jpa.Spezies;
 import projectanimal.tierarten.jpa.TierartStatus;
 
@@ -71,7 +71,7 @@ public class DashboardContent implements DashboardContentProvider {
         }
 
         // Eine Kachel für alle Tierarten in dieser Rubrik erzeugen
-        DashboardTile tile = this.createTile(spezies, null, "Alle", cssClass + " status-all", "calendar");
+        DashboardTile tile = this.createTile(spezies, null, "Alle", cssClass + " status-all", "welt.png");
         section.getTiles().add(tile);
 
         // Je Tierstatus eine weitere Kachel erzeugen
@@ -81,22 +81,22 @@ public class DashboardContent implements DashboardContentProvider {
 
             switch (status) {
                 case ENTDECKT:
-                    icon = "eye";
+                    icon = "stern.png";
                     break;
                 case IN_FORSCHUNG:
-                    icon = "exchange";
+                    icon = "lupe.png";
                     break;
                 case BEDROHT:
-                    icon = "hammer";
+                    icon = "bedroht.png";
                     break;
                 case GESCHÜTZT:
-                    icon = "shield";
+                    icon = "shield.png";
                     break;
                 case AUSGESTORBEN:
-                    icon = "cancel";
+                    icon = "dino.png";
                     break;
                 case MYTHOS:
-                    icon = "star-empty";
+                    icon = "unicorn.png";
                     break;
             }
 
