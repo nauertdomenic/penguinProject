@@ -104,15 +104,45 @@
                             <td>
                                 <c:out value="${tierart.status.label}"/>
                             </td>
-                            <td>
-                                <c:out value="${tierart.lebensdauer}"/>
-                            </td>
-                            <td>
-                                <c:out value="${tierart.gewicht}"/>
-                            </td>
-                            <td>
-                                <c:out value="${tierart.schmeckt}"/>
-                            </td>
+                            <c:choose>
+                                <c:when test='${tierart.lebensdauer == 0.0}'>
+                                    <td>
+                                        <c:out value="n/a"/>
+                                    </td>
+                                </c:when>    
+                                <c:otherwise>
+                                    <td>
+                                        <c:out value="${tierart.lebensdauer}"/>
+                                    </td>
+                                </c:otherwise>
+                            </c:choose>
+                            
+                            <c:choose>
+                                <c:when test='${tierart.gewicht == 0.0}'>
+                                    <td>
+                                        <c:out value="n/a"/>
+                                    </td>
+                                </c:when>    
+                                <c:otherwise>
+                                    <td>
+                                        <c:out value="${tierart.gewicht}"/>
+                                    </td>
+                                </c:otherwise>
+                            </c:choose>
+                            
+                            <c:choose>
+                                <c:when test='${tierart.schmeckt}'>
+                                    <td>
+                                        <c:out value="lecker!"/>
+                                    </td>
+                                </c:when>    
+                                <c:otherwise>
+                                    <td>
+                                        <c:out value="igitt!"/>
+                                    </td>
+                                </c:otherwise>
+                            </c:choose>
+                            
                             <td>
                                 <c:out value="${tierart.owner.username}"/>
                             </td>
