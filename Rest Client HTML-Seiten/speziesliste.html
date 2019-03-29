@@ -4,16 +4,27 @@
 <head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script>
-		var url = "https://localhost:8443/projectAnimal/RestAPI/";
-		var urlName = "speziesname/";
-		var urlAlle = "speziesliste/";
-		var items = [];
-		var urlParameter = "";
-		var urlLogin = "loginRest/";
+		let url = "http://localhost:8080/projectAnimal/RestAPI/";
+		let urlName = "speziesname/";
+		let urlAlle = "speziesliste/";
+		let items = [];
+		let urlParameter = "";
+		let urlLogin = "loginRest/";
 
 		//ListRest
 		$(document).ready(function() {
 			$("#btnSuchen").click(function() {
+				var username = $('#username').val();
+				var password = $('#passwort').val();
+
+				//Falls leer
+				if(!username || !password){
+					items.push("<h3>Bitte einloggen!</h3>");
+					printHTML();
+					return;
+				}
+
+				let authString = `${username}:${password}`
 
 				//Service Link
 				var inputParameter = $('#inputName').val();
@@ -24,78 +35,49 @@
 					urlParameter = url + urlAlle;
 				}
 
-				$.getJSON(urlParameter, function(data) {
-					var count = 1;
+			let response = fetch(urlParameter, {
+					method: "GET",
+					headers: {
+						"accept": "application/json",
+						"content-type": "application/json",
+						"authorization": "Basic " + btoa(username + ":" + password)
+					},
+				});
 
-					$.each(data, function(key, val) {
-						items.push("<h3>" + count + ". Spezies</h3>");
-						items.push("<li>SpeziesID: " + val.id + "</li>");
-						items.push("<li>Speziesname: " + val.name + "</li>");
+				response.then(function(value){
+					var data = value.json();
 
-						count = count + 1;
+					data.then(function(temp){
+						var count = 1;
+
+						if(temp == 0){
+							items.push("<h3>Kein User gefunden!</h3>");
+							printHTML();
+							return;
+						}
+
+						if(temp == 2){
+							items.push("<h3>Passwort ist falsch!</h3>");
+							printHTML();
+							return;
+						}
+
+							$.each(temp, function(key, val) {
+								items.push("<h3>" + count + ". Spezies</h3>");
+								items.push("<li>SpeziesID: " + val.id + "</li>");
+								items.push("<li>Speziesname: " + val.name + "</li>");
+
+								count = count + 1;
+							});
+
+							if(items.length < 1){
+								items.push("<h3>Keine Spezies gefunden!</h3>");
+							}
+
+							printHTML();
 					});
-
-					if(items.length < 1){
-						items.push("<h3>Keine Spezies gefunden!</h3>");
-					}
-
-					printHTML();
 				});
-			});
-		});
 
-		//loginRest
-		$(document).ready(function() {
-			$("#btnLogin").click(function() {
-				var myButtonUser = document.getElementById('btnLogin');
-				var myBtnSuchen = document.getElementById('btnSuchen');
-				var myInputField = document.getElementById('inputName');
-				var myUsernameField = document.getElementById('username');
-				var myPaswordField = document.getElementById('passwort');
-
-				if(myButtonUser.firstChild.data == 'Logout'){
-					myButtonUser.firstChild.data = 'Login';
-					myPaswordField.disabled = false;
-					myUsernameField.disabled = false;
-					myUsernameField.value = "";
-					myBtnSuchen.hidden = true;
-					myInputField.hidden = true;
-					$("#platzhalter").empty();
-					return;
-				}
-
-				var username = $('#username').val();
-				var passwort = $('#passwort').val();
-
-				if(!username || !passwort){
-					items.push("<h3>Bitte einloggen!</h3>");
-					printHTML();
-					return;
-				}
-
-				var urlParameter = url + urlLogin + username + "/" + passwort;
-
-				$.getJSON(urlParameter, function(data) {
-
-					if(data == 0){
-						items.push("<h3>Kein User in der Datenbank vorhanden!</h3>");
-					} else if (data == 1) {
-						myPaswordField.disabled = true;
-						myUsernameField.disabled = true;
-						myPaswordField.value = "";
-
-						myBtnSuchen.hidden = false;
-						myInputField.hidden = false;
-
-						myButtonUser.firstChild.data = 'Logout';
-
-					} else if (data == 2) {
-						items.push("<h3>Passwort falsch!</h3>");
-					}
-
-					printHTML();
-
-				});
 			});
 		});
 
@@ -116,17 +98,16 @@
 	<div>
 		<input id="username" type="text" placeholder="Username" />
 		<input id="passwort" type="password" placeholder="Passwort" />
-		<button id="btnLogin">Login</button>
 	</div>
 
 	<br />
 
 	<div>
-		<button id="btnSuchen" hidden>Lade Spezies</button>
+		<button id="btnSuchen">Lade Spezies</button>
 	</div>
 	<br />
 	<div>
-		<input id="inputName" hidden type="text" placeholder="Suchen mit Name" />
+		<input id="inputName" type="text" placeholder="Suchen mit Name" />
 	</div>
 	<div id="platzhalter">
 

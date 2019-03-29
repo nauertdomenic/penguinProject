@@ -13,6 +13,18 @@
 
 		$(document).ready(function() {
 			$("#btnSuchen").click(function() {
+				var username = $('#username').val();
+				var password = $('#passwort').val();
+
+				//Falls leer
+				if(!username || !password){
+					items.push("<h3>Bitte einloggen!</h3>");
+					printHTML();
+					return;
+				}
+
+				let authString = `${username}:${password}`;
+
 				//Service Link
 				var inputParameter = $('#inputName').val();
 
@@ -22,90 +34,62 @@
 					urlParameter = url + urlAlle;
 				}
 
-				$.getJSON(urlParameter, function(data) {
-					count = 1;
-					$.each(data, function(key, val) {
-						items.push("<h3>" + count + ". Tierart:</h3>")
-						items.push("<li>Tierartname: " + val.tierartname + "</li>");
-						if(val.spezies != void(0) || typeof val.spezies !== 'undefined'){
-							items.push("<li>Spezies: " + val.spezies.name + "</li>");
-						} else{
-							items.push("<li>Spezies: *leer*</li>");
+				let response = fetch(urlParameter, {
+					method: "GET",
+					headers: {
+						"accept": "application/json",
+						"content-type": "application/json",
+						"authorization": "Basic " + btoa(username + ":" + password)
+					},
+				});
+
+				response.then(function(value){
+					var data = value.json();
+
+					data.then(function(temp){
+						var count = 1;
+
+						if(temp == 3){
+							items.push("<h3>Kein User gefunden!</h3>");
+							printHTML();
+							return;
 						}
 
-						items.push("<li>Status: " + val.status + "</li>");
-						items.push("<li>Username: " + val.owner.username + "</li>");
-						items.push("<li>Name: " + val.owner.vorname + " " + val.owner.nachname + "</li>");
-						items.push("<br />");
+						if(temp == 2){
+							items.push("<h3>Passwort ist falsch!</h3>");
+							printHTML();
+							return;
+						}
 
-						count = count + 1;
+							$.each(temp, function(key, val) {
+								items.push("<h3>" + count + ". Tierart:</h3>")
+								items.push("<li>Tierartname: " + val.tierartname + "</li>");
+								if(val.spezies != void(0) || typeof val.spezies !== 'undefined'){
+									items.push("<li>Spezies: " + val.spezies.name + "</li>");
+								} else{
+									items.push("<li>Spezies: *leer*</li>");
+								}
+
+								items.push("<li>Status: " + val.status + "</li>");
+								items.push("<li>Username: " + val.owner.username + "</li>");
+								items.push("<li>Name: " + val.owner.vorname + " " + val.owner.nachname + "</li>");
+								items.push("<br />");
+
+								count = count + 1;
+
+								count = count + 1;
+							});
+
+							if(items.length < 1){
+								items.push("<h3>Keine Tierart gefunden!</h3>");
+							}
+
+							printHTML();
 					});
-
-					if(items.length < 1){
-						items.push("<h3>Keine Tierart gefunden!</h3>");
-					}
-
-					printHTML();
 				});
+
 			});
 		});
-
-		//loginRest
-		$(document).ready(function() {
-			$("#btnLogin").click(function() {
-				var myButtonUser = document.getElementById('btnLogin');
-				var myBtnSuchen = document.getElementById('btnSuchen');
-				var myInputField = document.getElementById('inputName');
-				var myUsernameField = document.getElementById('username');
-				var myPaswordField = document.getElementById('passwort');
-
-				if(myButtonUser.firstChild.data == 'Logout'){
-					myButtonUser.firstChild.data = 'Login';
-					myPaswordField.disabled = false;
-					myUsernameField.disabled = false;
-					myUsernameField.value = "";
-					myBtnSuchen.hidden = true;
-					myInputField.hidden = true;
-					$("#platzhalter").empty();
-					return;
-				}
-
-				var username = $('#username').val();
-				var passwort = $('#passwort').val();
-
-				if(!username || !passwort){
-					items.push("<h3>Bitte einloggen!</h3>");
-
-					printHTML();
-
-					return;
-				}
-
-				var urlParameter = url + urlLogin + username + "/" + passwort;
-
-				$.getJSON(urlParameter, function(data) {
-
-					if(data == 0){
-						items.push("<h3>Kein User in der Datenbank vorhanden!</h3>");
-					} else if (data == 1) {
-						myPaswordField.disabled = true;
-						myUsernameField.disabled = true;
-						myPaswordField.value = "";
-
-						myBtnSuchen.hidden = false;
-						myInputField.hidden = false;
-
-						myButtonUser.firstChild.data = 'Logout';
-
-					} else if (data == 2) {
-						items.push("<h3>Passwort falsch!</h3>");
-					}
-
-					printHTML();
-				});
-			});
-		});
-
 		function printHTML(){
 			$("#platzhalter").empty();
 
@@ -123,17 +107,16 @@
 	<div>
 		<input id="username" type="text" placeholder="Username" />
 		<input id="passwort" type="password" placeholder="Passwort" />
-		<button id="btnLogin">Login</button>
 	</div>
 
 	<br />
 
 	<div>
-		<button id="btnSuchen" hidden>Lade Tierarten</button>
+		<button id="btnSuchen">Lade Tierarten</button>
 	</div>
 	<br />
 	<div>
-		<input id="inputName" hidden type="text" placeholder="Suchen mit Name" />
+		<input id="inputName" type="text" placeholder="Suchen mit Name" />
 	</div>
 	<div id="platzhalter">
 
