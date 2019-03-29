@@ -110,7 +110,7 @@
                 <c:choose>
                     <c:when test='${tierart_form.values["tierart_schmeckt"][0]}'>
                         <div class="side-by-side margin">
-                            <input type="checkbox" name="tierart_schmeckt" checked value="true">
+                            <input type="checkbox" id="box" name="tierart_schmeckt" checked value="true">
                         </div>
                     </c:when>    
                     <c:otherwise>
