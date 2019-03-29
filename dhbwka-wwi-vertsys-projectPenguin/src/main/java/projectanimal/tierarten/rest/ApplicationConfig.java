@@ -17,10 +17,8 @@ public class ApplicationConfig extends Application {
     public Set<Class<?>> getClasses() {
         Set<Class<?>> resources = new HashSet<>();
 
-        resources.add(projectanimal.tierarten.rest.TierartnameRest.class);
         resources.add(projectanimal.tierarten.rest.TierartListRest.class);
         resources.add(projectanimal.tierarten.rest.SpeziesListRest.class);
-        resources.add(projectanimal.tierarten.rest.SpeziesnameRest.class);
 
         return resources;
     }

@@ -1,16 +1,14 @@
 package projectanimal.tierarten.rest;
 
 import com.google.gson.Gson;
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import projectanimal.common.ejb.UserBean;
-import projectanimal.common.jpa.User;
 import projectanimal.tierarten.ejb.TierartBean;
 import projectanimal.tierarten.jpa.Tierart;
 
@@ -21,7 +19,7 @@ import projectanimal.tierarten.jpa.Tierart;
  * Rest für alle Tierarten
  */
 @Stateless
-@Path("tierartliste")
+@Path("tierlist")
 public class TierartListRest {
 
     @EJB
@@ -32,31 +30,32 @@ public class TierartListRest {
 
     @GET
     public String doGet(@HeaderParam("Authorization") String authorization) {
-        // Anzuzeigende Spezies suchen
-        if (authorization != null && authorization.toLowerCase().startsWith("basic")) {
-            // Authorization: Basic base64credentials
-            String base64Credentials = authorization.substring("Basic".length()).trim();
-            byte[] credDecoded = Base64.getDecoder().decode(base64Credentials);
-            String credentials = new String(credDecoded, StandardCharsets.UTF_8);
-            // credentials = username:password
-            final String[] values = credentials.split(":", 2);
+        int returnParam = userBean.userAuthorization(authorization);
 
-            // Error: 0 = kein User; 2 = falsches Passwort
-            List<User> user = userBean.findUser(values[0]);
-            if (user.size() < 1) {
-                return "3";
-            }
+        if (returnParam == 1) {
+            List<Tierart> tierarten = this.tierartBean.findAll();
+            Gson gson = new Gson();
+            String json = gson.toJson(tierarten);
+            return json;
 
-            if (user.get(0).checkPassword(values[1])) {
-                List<Tierart> tierarten = this.tierartBean.findAll();
-                Gson gson = new Gson();
-                String json = gson.toJson(tierarten);
-                return json;
-
-            } else {
-                return "2";
-            }
+        } else {
+            return String.valueOf(returnParam);
         }
-        return null;
+    }
+
+    @GET
+    @Path("{name}")
+    public String doGet(@PathParam("name") String name, @HeaderParam("Authorization") String authorization) {
+        // Anzuzeigende Tierart suchen
+        int returnParam = userBean.userAuthorization(authorization);
+
+        if (returnParam == 1) {
+            List<Tierart> tierarten = this.tierartBean.findAllTierartByTierartname(name);
+            Gson gson = new Gson();
+            String json = gson.toJson(tierarten);
+            return json;
+        } else {
+            return String.valueOf(returnParam);
+        }
     }
 }

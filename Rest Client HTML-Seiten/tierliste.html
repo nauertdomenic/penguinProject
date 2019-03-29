@@ -4,17 +4,16 @@
 <head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script>
-		var url = "https://localhost:8443/projectAnimal/RestAPI/"
-		var urlName = "tierartRest/";
-		var urlAlle = "tierartliste/";
+		var url = "https://localhost:8443/projectAnimal/RestAPI/tierlist/"
 		var items = [];
 		var urlParameter = "";
-		var urlLogin = "loginRest/";
 
 		$(document).ready(function() {
 			$("#btnSuchen").click(function() {
 				var username = $('#username').val();
 				var password = $('#passwort').val();
+
+				urlParameter = url;
 
 				//Falls leer
 				if(!username || !password){
@@ -23,15 +22,20 @@
 					return;
 				}
 
-				let authString = `${username}:${password}`;
-
 				//Service Link
 				var inputParameter = $('#inputName').val();
+				var radioCode = $("input[name='groupSearch']:checked").val();
 
-				if (inputParameter != "") {
-					urlParameter = url + urlName + inputParameter;
-				} else {
-					urlParameter = url + urlAlle;
+				if (radioCode == 1) {
+					urlParameter = url;
+				} else if (radioCode = 2) {
+					if (inputParameter != ""){
+						urlParameter = url + inputParameter;
+					} else {
+						items.push("<h3>Bitte Parameter zum Suchen eingeben!</h3>");
+						printHTML();
+						return;
+					}
 				}
 
 				let response = fetch(urlParameter, {
@@ -70,12 +74,15 @@
 									items.push("<li>Spezies: *leer*</li>");
 								}
 
+								items.push("<li>Gewicht: " + val.gewicht + "</li>");
+								items.push("<li>Lebensdauer: " + val.lebensdauer + "</li>");
 								items.push("<li>Status: " + val.status + "</li>");
+								items.push("<li>Schmeckt: " + val.schmeckt + "</li>");
 								items.push("<li>Username: " + val.owner.username + "</li>");
 								items.push("<li>Name: " + val.owner.vorname + " " + val.owner.nachname + "</li>");
+								items.push("<li>Änderungsdatum: " + val.date + "</li>");
+								items.push("<li>Änderungszeit: " + val.time + "</li>");
 								items.push("<br />");
-
-								count = count + 1;
 
 								count = count + 1;
 							});
@@ -116,7 +123,14 @@
 	</div>
 	<br />
 	<div>
-		<input id="inputName" type="text" placeholder="Suchen mit Name" />
+		<input type="radio" name="groupSearch" id="r1" value="1" checked />
+		<label for="r1">Alle</label>
+		<input type="radio" name="groupSearch" id="r2" value="2" />
+		<label for="r2">Name</label>
+	</div>
+	<br />
+	<div>
+		<input id="inputName" type="text" placeholder="Attribut" />
 	</div>
 	<div id="platzhalter">
 
