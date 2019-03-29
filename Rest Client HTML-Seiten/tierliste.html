@@ -5,6 +5,9 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script>
 		var url = "https://localhost:8443/projectAnimal/RestAPI/tierlist/"
+		var urlName = "tierartname/";
+		var urlGewicht = "gewicht/";
+		var urlLebensdauer = "lebensdauer/";
 		var items = [];
 		var urlParameter = "";
 
@@ -26,16 +29,16 @@
 				var inputParameter = $('#inputName').val();
 				var radioCode = $("input[name='groupSearch']:checked").val();
 
+				if(radioCode > 1 && inputParameter == ""){
+					items.push("<h3>Bitte Parameter zum Suchen eingeben!</h3>");
+					printHTML();
+					return;
+				}
+
 				if (radioCode == 1) {
 					urlParameter = url;
-				} else if (radioCode = 2) {
-					if (inputParameter != ""){
-						urlParameter = url + inputParameter;
-					} else {
-						items.push("<h3>Bitte Parameter zum Suchen eingeben!</h3>");
-						printHTML();
-						return;
-					}
+				} else if (radioCode == 2) {
+					urlParameter = url + urlName + inputParameter;
 				}
 
 				let response = fetch(urlParameter, {

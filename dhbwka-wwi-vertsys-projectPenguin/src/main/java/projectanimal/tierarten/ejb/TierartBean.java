@@ -1,10 +1,10 @@
 package projectanimal.tierarten.ejb;
 
-import projectanimal.common.ejb.EntityBean;
 import java.util.*;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.persistence.criteria.*;
+import projectanimal.common.ejb.EntityBean;
 import projectanimal.tierarten.jpa.Spezies;
 import projectanimal.tierarten.jpa.Tierart;
 import projectanimal.tierarten.jpa.TierartStatus;
@@ -77,4 +77,17 @@ public class TierartBean extends EntityBean<Tierart, Long> {
 
         return em.createQuery(query).getResultList();
     }
+
+    /**
+     * Auslesen aller Datensätze (Reihenfolge undefiniert) mit Attribut tiername
+     *
+     * @param tierartname
+     * @return Liste mit allen Datensätzen
+     */
+    public List<Tierart> findAllTierartByTierartname(String tierartname) {
+        return em.createQuery("SELECT t FROM Tierart t WHERE t.tierartname = :tierartname")
+                .setParameter("tierartname", tierartname)
+                .getResultList();
+    }
+
 }

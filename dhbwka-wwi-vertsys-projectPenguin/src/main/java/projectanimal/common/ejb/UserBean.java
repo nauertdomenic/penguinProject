@@ -125,7 +125,7 @@ public class UserBean extends EntityBean<User, Long> {
             final String[] values = credentials.split(":", 2);
 
             // Error: 0 = kein User; 2 = falsches Passwort
-            List<User> user = findUser(values[0]);
+            List<User> user = findUserlisteByUsername(values[0]);
             if (user.size() < 1) {
                 return 3;
             }
@@ -137,6 +137,18 @@ public class UserBean extends EntityBean<User, Long> {
         }
 
         return 2;
+    }
+
+    /**
+     * Auslesen des Users mit Attribut username
+     *
+     * @param username
+     * @return User
+     */
+    public List<User> findUserlisteByUsername(String username) {
+        return em.createQuery("SELECT t FROM User t WHERE t.username = :username")
+                .setParameter("username", username)
+                .getResultList();
     }
 
 }

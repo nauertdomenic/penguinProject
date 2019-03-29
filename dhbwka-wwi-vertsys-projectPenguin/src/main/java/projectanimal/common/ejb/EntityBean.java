@@ -58,39 +58,6 @@ public abstract class EntityBean<Entity, EntityId> {
     }
 
     /**
-     * Auslesen aller Datensätze (Reihenfolge undefiniert) mit Attribut name
-     *
-     * @param name
-     * @return Liste mit allen Datensätzen
-     */
-    public List<Entity> findAllSpeziesByName(String name) {
-        String select = "SELECT e FROM $E e WHERE e.name = :name".replace("$E", this.entityClass.getName());
-        return em.createQuery(select).setParameter("name", name).getResultList();
-    }
-
-    /**
-     * Auslesen aller Datensätze (Reihenfolge undefiniert) mit Attribut tiername
-     *
-     * @param tierartname
-     * @return Liste mit allen Datensätzen
-     */
-    public List<Entity> findAllTierartByTierartname(String tierartname) {
-        String select = "SELECT e FROM $E e WHERE e.tierartname = :tierartname".replace("$E", this.entityClass.getName());
-        return em.createQuery(select).setParameter("tierartname", tierartname).getResultList();
-    }
-
-    /**
-     * Auslesen des Users mit Attribut username
-     *
-     * @param username
-     * @return User
-     */
-    public List<Entity> findUser(String username) {
-        String select = "SELECT e FROM $E e WHERE e.username = :username".replace("$E", this.entityClass.getName());
-        return em.createQuery(select).setParameter("username", username).getResultList();
-    }
-
-    /**
      * Speichern eines neuen Datensatzes.
      *
      * @param entity Zu speichernder Datensatz

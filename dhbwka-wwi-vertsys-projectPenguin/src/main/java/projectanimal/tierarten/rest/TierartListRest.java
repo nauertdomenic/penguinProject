@@ -44,8 +44,8 @@ public class TierartListRest {
     }
 
     @GET
-    @Path("{name}")
-    public String doGet(@PathParam("name") String name, @HeaderParam("Authorization") String authorization) {
+    @Path("tierartname/{name}")
+    public String doGetName(@PathParam("name") String name, @HeaderParam("Authorization") String authorization) {
         // Anzuzeigende Tierart suchen
         int returnParam = userBean.userAuthorization(authorization);
 
