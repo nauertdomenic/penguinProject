@@ -21,6 +21,7 @@ public class ApplicationConfig extends Application {
         resources.add(projectanimal.tierarten.rest.TierartListRest.class);
         resources.add(projectanimal.tierarten.rest.SpeziesListRest.class);
         resources.add(projectanimal.tierarten.rest.SpeziesnameRest.class);
+        resources.add(projectanimal.tierarten.rest.LoginRest.class);
 
         return resources;
     }
