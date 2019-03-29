@@ -83,7 +83,7 @@
                         </div>
 
                         <%--Löschen der markierten Spezies--%>
-                        <button type="submit" name="action" value="delete" class="icon-trash-empty">
+                        <button type="submit" id="submit" name="action" value="delete" class="icon-trash-empty">
                             Markierte löschen
                         </button>
                     </div>

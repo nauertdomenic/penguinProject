@@ -11,7 +11,7 @@
         Daten ändern
     </jsp:attribute>
 
-    <jsp:attribute name="head">
+   <jsp:attribute name="head">
         <link rel="stylesheet" href="<c:url value="/css/dashboard.css"/>" />
     </jsp:attribute>
 
@@ -81,7 +81,7 @@
                     </div>
 
                     <br>
-
+                    <h3> </h3>
                     <%-- Button zum Abschicken --%>
                     <div class="side-by-side">
                         <button class="icon-floppy" type="submit">

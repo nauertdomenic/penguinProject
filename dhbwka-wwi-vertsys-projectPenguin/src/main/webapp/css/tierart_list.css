@@ -23,4 +23,8 @@ td, th {
 test{
     margin: 2em;
 }
-
+#ueberschrift{
+    color: rgba(17,49,209,1.0);
+    font-weight: bold;
+    
+}

@@ -88,6 +88,7 @@ select {
     border: 1px solid #bebebe;
     padding: 0.5em;
     margin-right: 2em;
+    border-radius: 30px 30px 30px 30px;
     outline: none;
     background: white;
 }
@@ -102,4 +103,11 @@ textarea {
 form .errors {
     margin-top: 1em;
     color: red;
+}
+
+button{
+      border-radius: 25px 25px 25px 25px;
+   height: 30px;
+   width: 90px;
+   background-color: #949ab6;
 }

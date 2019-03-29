@@ -11,16 +11,3 @@ Creative Commons Namensnennung 4.0 International Lizenz.
 .margin {
     margin-bottom: 1em;
 }
-#j_username {
-    border-radius: 30px 30px 30px 30px;
-}
-#j_password {
-    border-radius: 30px 30px 30px 30px;
-}
-#login_button {
-    border-radius: 25px 25px 25px 25px;
-   height: 30px;
-   width: 90px;
-   background-color: #949ab6;
-   
-}

@@ -79,7 +79,7 @@
 
                 <table>
                     <thead>
-                        <tr>
+                        <tr id="ueberschrift">
                             <th>Bezeichnung</th>
                             <th>Spezies</th>
                             <th>Status</th>
