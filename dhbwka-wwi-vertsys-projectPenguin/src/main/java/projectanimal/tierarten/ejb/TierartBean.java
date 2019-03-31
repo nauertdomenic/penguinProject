@@ -77,17 +77,4 @@ public class TierartBean extends EntityBean<Tierart, Long> {
 
         return em.createQuery(query).getResultList();
     }
-
-    /**
-     * Auslesen aller Datensätze (Reihenfolge undefiniert) mit Attribut tiername
-     *
-     * @param tierartname
-     * @return Liste mit allen Datensätzen
-     */
-    public List<Tierart> findAllTierartByTierartname(String tierartname) {
-        return em.createQuery("SELECT t FROM Tierart t WHERE t.tierartname = :tierartname")
-                .setParameter("tierartname", tierartname)
-                .getResultList();
-    }
-
 }

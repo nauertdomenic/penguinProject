@@ -86,4 +86,27 @@ public abstract class EntityBean<Entity, EntityId> {
     public void delete(Entity entity) {
         em.remove(em.merge(entity));
     }
+
+    /**
+     * Auslesen aller Datensätze (Reihenfolge undefiniert) mit Attribut name
+     *
+     * @param name
+     * @return Liste mit allen Datensätzen
+     */
+    public List<Entity> findAllSpeziesByName(String name) {
+        String select = "SELECT e FROM $E e WHERE e.name = :name".replace("$E", this.entityClass.getName());
+        return em.createQuery(select).setParameter("name", name).getResultList();
+    }
+
+    /**
+     * Auslesen aller Datensätze (Reihenfolge undefiniert) mit Attribut tiername
+     *
+     * @param tierartname
+     * @return Liste mit allen Datensätzen
+     */
+    public List<Entity> findAllTierartByTierartname(String tierartname) {
+        String select = "SELECT e FROM $E e WHERE e.tierartname = :tierartname".replace("$E", this.entityClass.getName());
+        return em.createQuery(select).setParameter("tierartname", tierartname).getResultList();
+    }
+
 }

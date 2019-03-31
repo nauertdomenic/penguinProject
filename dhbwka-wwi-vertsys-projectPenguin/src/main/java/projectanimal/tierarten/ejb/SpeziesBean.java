@@ -28,16 +28,4 @@ public class SpeziesBean extends EntityBean<Spezies, Long> {
     public List<Spezies> findAllSorted() {
         return this.em.createQuery("SELECT c FROM Spezies c ORDER BY c.name").getResultList();
     }
-
-    /**
-     * Auslesen aller Datensätze (Reihenfolge undefiniert) mit Attribut name
-     *
-     * @param name
-     * @return Liste mit allen Datensätzen
-     */
-    public List<Spezies> findAllSpeziesByName(String name) {
-        return em.createQuery("SELECT t FROM Spezies t WHERE t.name = :name")
-                .setParameter("name", name)
-                .getResultList();
-    }
 }
